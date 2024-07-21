@@ -13,7 +13,8 @@ string infixToPrefix(string s){
   stack<char> st;
   string res = "";
   for(char c:s){
-    if(c==')' || c=='^' || c=='*' || c=='/' || c=='+' || c=='-'){
+    if(c==')' || c=='^' || c=='*' || c=='/' || c=='+' || c=='-'){\
+      // Some change is here try to read gfg article: https://www.geeksforgeeks.org/convert-infix-prefix-notation/
       while(!st.empty() && !priorityGreater(c,st)){
         res=+st.top();
         st.pop();
@@ -26,6 +27,10 @@ string infixToPrefix(string s){
       }
       st.pop();
     } else res+= c;
+  }
+  while(st.empty()==false){
+    res+=st.top();
+    st.pop();
   }
   return reverse(res);
 }
